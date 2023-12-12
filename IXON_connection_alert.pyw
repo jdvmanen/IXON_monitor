@@ -1,19 +1,13 @@
-#######################################################
-# Tool to monitor IXON adapter connection state. It shows a banner on top of your screen with the IXON adapter status.
-# 
-#### How to install ####
+#Tool to monitor IXON adapter connection state. It shows a banner on top of your screen with the IXON adapter status. It shows the client device name in the banner as well.
+
+# How to install
 # Make sure your IXON network adapter is called 'IXON'.
 # winget install python
 # pip install tkinter
 # pip install psutil
 # place script (with extension .pyw) in shell:startup
-
-
-#### How to use ####
-# Shows a little 'Niet actief' (White) indicator on top of your screen if no IXON connection is active.
-# shows up as soon as the IXON adapter is active with a banner red/white alterating.
-# If you click on it, it moves 500 pixels to the right or to the left (to prevent something
-# being behind the indicator that has to be read)
+# How to use
+# Shows a little 'Not actief' (White) indicator on top of your screen if no IXON connection is active. shows up as soon as the IXON adapter is active with a banner red/white alterating. If you click on it, it moves 500 pixels to the right or to the left (to prevent something being behind the indicator that has to be read)
 
 import tkinter as tk
 import psutil
@@ -31,11 +25,11 @@ def is_vpn_active(vpn_adapter_name):
 
 def get_connected_client():
     log_path = "C:\\ProgramData\\IXON\\VPN Client\\Logs"
-    # Zoek naar het nieuwste logbestand in de map
+    # Search newest logfile
     log_files = [f for f in os.listdir(log_path) if f.endswith(".log")]
     latest_log = max(log_files, key=lambda f: os.path.getctime(os.path.join(log_path, f)))
 
-    # Open het nieuwste logbestand en zoek naar de laatste regel met 'Name:'
+    # Open the newest log and search for last row having 'Name:'
     client_pattern = re.compile(r'Name:\s+(.*?)(?:\r\n|\n)', re.DOTALL)
     with open(os.path.join(log_path, latest_log), 'r') as file:
         lines = file.readlines()
@@ -43,7 +37,7 @@ def get_connected_client():
             match = client_pattern.search(line)
             if match:
                 return match.group(1)
-    return "Onbekende client"
+    return "Unknown client"
 
 def on_click(event):
     global moved
@@ -56,41 +50,41 @@ def on_click(event):
 def update_window():
     global blink_color_index
     if is_vpn_active('IXON'):
-        root.title('VPN Actief')
+        root.title('IXON active')
         connected_client = get_connected_client()
-        status_label.config(text=f'VPN ACTIEF - {connected_client}', bg=blink_colors[blink_color_index])
-        blink_color_index = 1 - blink_color_index  # Wissel tussen 0 en 1
+        status_label.config(text=f'IXON ACTIVE - {connected_client}', bg=blink_colors[blink_color_index])
+        blink_color_index = 1 - blink_color_index  # Toggle between 0 en 1
     else:
-        root.title('VPN Niet Actief')
-        status_label.config(text='Niet actief', bg='white')  # Leeg het tekstveld
+        root.title('ixon not active')
+        status_label.config(text='not active', bg='white')  # Empty textfield
 
-    root.after(1000, update_window)  # Herhaal elke 1000 milliseconden (1 seconde)
+    root.after(1000, update_window)  # Repeat every 1000 milliseconds
 
 blink_color_index = 0
 blink_colors = ['red', 'white']
 moved = False
 
 root = tk.Tk()
-root.title('VPN Status')
+root.title('IXON Status')
 
-# Maak het venster altijd bovenaan
+# Show screen on top
 root.attributes('-topmost', True)
 
-# Verberg de taakbalkknop van het venster
+# Hide taskbar buttons
 root.overrideredirect(True)
 
-# Centreren op het hoofdscherm
+# Center on homescreen
 screen_width = root.winfo_screenwidth()
 root.geometry(f'+{(screen_width - root.winfo_reqwidth()) // 2}+0')
 
-# Voeg een label toe om de VPN-status weer te geven
+# Add label to show status
 status_label = tk.Label(root, text='', bg='lightgray')
 status_label.pack(pady=0)
 
-# Voeg een klik-event toe om het venster te verplaatsen
+# Add click event to move screen
 root.bind('<Button-1>', on_click)
 
-# Start de update-functie voor het venster
+# Start update function
 update_window()
 
 root.mainloop()
