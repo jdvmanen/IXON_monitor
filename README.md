@@ -10,7 +10,7 @@ It shows the client device name in the banner as well.
 
 
 #### How to use ####
-Shows a little 'Niet actief' (White) indicator on top of your screen if no IXON connection is active.
+Shows a little 'Not actief' (White) indicator on top of your screen if no IXON connection is active.
 shows up as soon as the IXON adapter is active with a banner red/white alterating.
 If you click on it, it moves 500 pixels to the right or to the left (to prevent something
 being behind the indicator that has to be read)
