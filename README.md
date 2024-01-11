@@ -6,6 +6,7 @@ It shows the client device name in the banner as well.
 * winget install python
 * pip install tkinter
 * pip install psutil
+* pip install screeninfo
 * place script (with extension .pyw) in shell:startup
 
 
