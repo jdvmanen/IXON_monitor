@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "IXON Portal Tab Activator",
+  "version": "1.0.0",
+  "description": "Activates an existing portal.ixon.cloud tab, or opens the portal when none exists.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAreuclMqFbpEof4/QjsRhqO5Yr98rAY+HjaKHgaBx/B4uJ6+yToITvAAX18cwfFd3r3QI5x08bg3EF8y6M1YCOVSIIhquIzZxv1nNN9PpUrExo5DRjPWFJyVIwushHYzh1Or59aax+902GdAJLj0I6Mq3USYrRhBngH8EGF2JOghphJi2/kd1WOk2bSziXTr6dqLvKx6XuPkBbtOva2F12AGIJvEo6FzjNiqOWYZrPcFjmN5KQXf9gPSBg8H1cHU83ecQtK8CXvp1R0YDokqm22Fp+WCjdOeRntHLD6sVuyUsvGVXEPCnAQoKwNdGXrBklTvpMJPiIcc/fOKFjCfFSwIDAQAB",
+  "permissions": ["tabs"]
+}

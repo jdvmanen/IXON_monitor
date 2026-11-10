@@ -356,7 +356,7 @@ class Banner:
                 self.border.thickness = base * 2
                 self.border.set_state(True, blink=True, blink_on=blink_on)
             else:
-                # terug naar “normale” dikte (opnieuw bepalen per scherm)
+                # Restore the normal border thickness for this screen.
                 self.border.thickness = base
                 self.border.set_state(True, blink=False, blink_on=True)
 
